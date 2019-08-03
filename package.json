@@ -30,10 +30,14 @@
     "github",
     "repositories",
     "repo",
+    "repos",
     "api",
     "user",
     "org",
-    "organization"
+    "organization",
+    "list",
+    "api",
+    "request"
   ],
   "files": [
     "index.js",
