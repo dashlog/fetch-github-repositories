@@ -1,0 +1,56 @@
+{
+  "name": "fetch-github-repositories",
+  "version": "1.0.0",
+  "description": "Fetch github repositories for a given user (or organization)",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env eslint index.js && jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fraxken/fetch-github-repositories.git"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "index.js"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/test/**/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/test/fixtures/"
+    ]
+  },
+  "keywords": [
+    "retrieve",
+    "fetch",
+    "git",
+    "github",
+    "repositories",
+    "repo",
+    "api",
+    "user",
+    "org",
+    "organization"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "author": "GENTILHOMME Thomas <gentilhomme.thomas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fraxken/fetch-github-repositories/issues"
+  },
+  "homepage": "https://github.com/fraxken/fetch-github-repositories#readme",
+  "devDependencies": {
+    "@slimio/eslint-config": "^3.0.2",
+    "@slimio/is": "^1.5.1",
+    "cross-env": "^5.2.0",
+    "jest": "^24.8.0"
+  },
+  "dependencies": {
+    "httpie": "^1.1.2"
+  }
+}
