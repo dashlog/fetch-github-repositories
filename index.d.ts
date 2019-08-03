@@ -1,6 +1,7 @@
 export interface Options {
     agent?: string;
     token?: string;
+    kind?: "users" | "orgs";
 }
 
 export interface Repository {

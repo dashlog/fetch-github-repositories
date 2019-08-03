@@ -4,7 +4,7 @@
 const { get } = require("httpie");
 
 // CONSTANTS
-const GITHUB_URL = new URL("https://api.github.com/users/");
+const GITHUB_URL = new URL("https://api.github.com/");
 
 /**
  * @async
@@ -21,8 +21,9 @@ async function fetchGithubRepositories(user, options = Object.create(null)) {
     if (typeof user !== "string") {
         throw new TypeError("user argument must be typeof string");
     }
-    const { agent = "fetch-github-repo", token = null } = options;
+    const { agent = "fetch-github-repo", token = null, kind = "users" } = options;
 
+    // Create headers
     const headers = {
         "User-Agent": agent,
         Accept: "application/vnd.github.v3.raw"
@@ -30,9 +31,21 @@ async function fetchGithubRepositories(user, options = Object.create(null)) {
     if (typeof token === "string") {
         headers.Authorization = `token ${token}`;
     }
-    const { data = null } = await get(new URL(`${user}/repos`, GITHUB_URL), { headers });
 
-    return data;
+    // Navigate through pages...
+    const results = [];
+    for (let page = 1; ;page++) {
+        // TODO: read headers.link to get the latest page ?
+        const { data = null } = await get(
+            new URL(`${kind}/${user}/repos?per_page=100&page=${page}`, GITHUB_URL), { headers });
+
+        if (data.length === 0) {
+            break;
+        }
+        results.push(...data);
+    }
+
+    return results;
 }
 
 module.exports = fetchGithubRepositories;
