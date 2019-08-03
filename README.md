@@ -1,4 +1,10 @@
 # fetch-github-repositories
+![version](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/fraxken/fetch-github-repositories/master/package.json&query=$.version&label=Version)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/fraxken/fetch-github-repositories/commit-activity)
+![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
+![dep](https://img.shields.io/david/fraxken/fetch-github-repositories)
+![size](https://img.shields.io/github/languages/code-size/fraxken/fetch-github-repositories)
+
 Fetch github repositories for a given user (or an organization).
 
 ## Requirements
@@ -6,9 +12,9 @@ Fetch github repositories for a given user (or an organization).
 
 ## Why ?
 
-- Fast with a http lib close to the Node.js core.
+- Fast and light.
 - Replacement for [repos](https://github.com/jonschlinkert/repos) which introduce dozen of dependencies just for a GET request...
-- Come with a TypeScript definition for intellisense.
+- Come with a bundled TypeScript definition for intellisense.
 
 ## Getting Started
 

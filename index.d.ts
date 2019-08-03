@@ -80,7 +80,7 @@ export interface Repository {
     size: number;
     stargazers_count: number;
     watchers_count: number;
-    language: any;
+    language: null | string;
     has_issues: boolean;
     has_projects: boolean;
     has_downloads: boolean;
@@ -91,11 +91,22 @@ export interface Repository {
     archived: boolean;
     disabled: boolean;
     open_issues_count: number;
-    license: string;
+    license: {
+        key: string;
+        name: string;
+        spdx_id: string;
+        url: string;
+        node_id: string;
+    } | null;
     forks: number;
     open_issues: number;
     watchers: number;
     default_branch: string;
+    permissions?: {
+        admin: true;
+        push: true;
+        pull: true;
+    }
 }
 
 declare function fetchGithubRepositories(user: string, options?: Options): Repository[];
