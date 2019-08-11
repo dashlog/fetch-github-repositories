@@ -2,6 +2,7 @@ export interface Options {
     agent?: string;
     token?: string;
     kind?: "users" | "orgs";
+    fetchUserOrgs?: boolean;
 }
 
 export interface Repository {
@@ -110,6 +111,9 @@ export interface Repository {
     }
 }
 
-declare function fetchGithubRepositories(user: string, options?: Options): Repository[];
+declare namespace fetchGithubRepositories {
+    export function fetch(user: string, options?: Options): Promise<Repository[]>;
+    export function fetchLazy(user: string, options?: Options): AsyncIterableIterator<Repository>;
+}
 
 export = fetchGithubRepositories;

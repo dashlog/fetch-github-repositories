@@ -12,8 +12,9 @@ Fetch github repositories for a given user (or an organization).
 
 ## Why ?
 
-- Fast and light.
-- Replacement for [repos](https://github.com/jonschlinkert/repos) which introduce dozen of dependencies just for a GET request...
+- Fast and light (With a lazy API if required).
+- Support both `users` and `orgs` endpoints with the **kind** option.
+- Replacement for [repos](https://github.com/jonschlinkert/repos) which introduce dozen of dependencies.
 - Come with a bundled TypeScript definition for intellisense.
 
 ## Getting Started
@@ -28,19 +29,24 @@ $ yarn add fetch-github-repositories
 
 ## Usage example
 ```js
-const fetchGithubRepositories = require("fetch-github-repositories");
+const { fetch, fetchLazy } = require("fetch-github-repositories");
 
 async function main() {
-    const options = { agent: "my-program" };
-    const repos = await fetchGithubRepositories("userName", options);
-    // Do the job with repos
+    const repos = await fetch("fraxken", {
+        fetchUserOrgs: true // if you want an equivalent of "repos"
+    });
+
+    // or use lazy API
+    for await (const repo of fetchLazy("fraxken")) {
+        console.log(repo.full_name);
+    }
 }
 main().catch(console.error);
 ```
 
 ## API
 
-### fetchGithubRepositories(user: string, options?: Options): Repository[]
+### fetch(user: string, options?: Options): Promise< Repository[] >
 Return an Array of repositories (the interface can be found in index.d.ts).
 
 Options:
@@ -49,6 +55,11 @@ Options:
 | --- | --- | --- |
 | agent | "fetch-github-repo" | User-Agent header (required by github) |
 | token | undefined | github token for private repositories |
+| kind | "users" | can be either `users` or `orgs` |
+| fetchUserOrgs | fetch users organizations repositories when the kind is equal to `users` |
+
+### fetchLazy(user: string, options?: Options): AsyncIterableIterator< Repository >
+Same arguments as **fetch**.
 
 ## License
 MIT

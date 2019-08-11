@@ -2,26 +2,22 @@
 
 // Require Third-party Dependencies
 const { get } = require("httpie");
+const linkHeader = require("http-link-header");
+const combineAsyncIterators = require("combine-async-iterators");
 
 // CONSTANTS
 const GITHUB_URL = new URL("https://api.github.com/");
 
-/**
- * @async
- * @function fetchGithubRepositories
- * @param {!string} user user name or organization name
- * @param {object} [options]
- * @param {string} [options.agent="fetch-github-repo"] User-Agent header
- * @param {string} [options.token] OAuth2 github token (for private repositories).
- * @returns {Promise<object>}
- *
- * @throws {TypeError}
- */
-async function fetchGithubRepositories(user, options = Object.create(null)) {
+async function* fetchLazy(user, options = Object.create(null)) {
     if (typeof user !== "string") {
         throw new TypeError("user argument must be typeof string");
     }
-    const { agent = "fetch-github-repo", token = null, kind = "users" } = options;
+    const {
+        agent = "fetch-github-repo",
+        token = null,
+        kind = "users",
+        fetchUserOrgs = false
+    } = options;
 
     // Create headers
     const headers = {
@@ -32,20 +28,46 @@ async function fetchGithubRepositories(user, options = Object.create(null)) {
         headers.Authorization = `token ${token}`;
     }
 
-    // Navigate through pages...
-    const results = [];
-    for (let page = 1; ;page++) {
-        // TODO: read headers.link to get the latest page ?
-        const { data = null } = await get(
-            new URL(`${kind}/${user}/repos?per_page=100&page=${page}`, GITHUB_URL), { headers });
+    // TODO: parse link & lazy fetch all pages at once ?
+    let currURL = `${kind}/${user}/repos`;
+    while (1) {
+        const { data = null, headers: currHeaders } = await get(new URL(currURL, GITHUB_URL), { headers });
+        for (const repo of data) {
+            yield repo;
+        }
 
-        if (data.length === 0) {
+        if (!Reflect.has(currHeaders, "link")) {
             break;
         }
-        results.push(...data);
+        const { refs } = linkHeader.parse(currHeaders.link);
+
+        const item = refs.find((row) => row.rel === "next" || row.rel === "last");
+        if (item === undefined) {
+            break;
+        }
+        currURL = item.uri;
     }
 
-    return results;
+    if (kind === "users" && fetchUserOrgs) {
+        const { data } = await get(new URL(`users/${user}/orgs`, GITHUB_URL), { headers });
+
+        const iterators = data.map((row) => fetchLazy(row.login, { agent, token, kind: "orgs" }));
+        for await (const repo of combineAsyncIterators(...iterators)) {
+            yield repo;
+        }
+    }
 }
 
-module.exports = fetchGithubRepositories;
+async function fetch(user, options = Object.create(null)) {
+    const repositories = [];
+    for await (const repo of fetchLazy(user, options)) {
+        repositories.push(repo);
+    }
+
+    return repositories;
+}
+
+module.exports = {
+    fetch,
+    fetchLazy
+};

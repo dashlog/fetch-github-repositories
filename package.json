@@ -53,9 +53,12 @@
     "@slimio/eslint-config": "^3.0.2",
     "@slimio/is": "^1.5.1",
     "cross-env": "^5.2.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "repos": "^2.0.0"
   },
   "dependencies": {
+    "combine-async-iterators": "^1.1.1",
+    "http-link-header": "^1.0.2",
     "httpie": "^1.1.2"
   }
 }
