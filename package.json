@@ -1,6 +1,6 @@
 {
   "name": "fetch-github-repositories",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Fetch github repositories for a given user (or organization)",
   "main": "index.js",
   "scripts": {
