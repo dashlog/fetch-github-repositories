@@ -56,7 +56,7 @@ Options:
 | agent | "fetch-github-repo" | User-Agent header (required by github) |
 | token | undefined | github token for private repositories |
 | kind | "users" | can be either `users` or `orgs` |
-| fetchUserOrgs | fetch users organizations repositories when the kind is equal to `users` |
+| fetchUserOrgs | false | fetch users organizations repositories when the kind is equal to `users` |
 
 ### fetchLazy(user: string, options?: Options): AsyncIterableIterator< Repository >
 Same arguments as **fetch**.
