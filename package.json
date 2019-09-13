@@ -52,7 +52,7 @@
   "devDependencies": {
     "@slimio/eslint-config": "^3.0.3",
     "@slimio/is": "^1.5.1",
-    "cross-env": "^5.2.0",
+    "cross-env": "^5.2.1",
     "jest": "^24.8.0",
     "repos": "^2.0.0"
   },
