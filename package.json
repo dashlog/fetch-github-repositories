@@ -50,15 +50,15 @@
   },
   "homepage": "https://github.com/fraxken/fetch-github-repositories#readme",
   "devDependencies": {
-    "@slimio/eslint-config": "^3.0.3",
+    "@slimio/eslint-config": "^4.1.0",
     "@slimio/is": "^1.5.1",
-    "cross-env": "^5.2.1",
-    "jest": "^24.9.0",
+    "cross-env": "^7.0.3",
+    "jest": "^27.3.1",
     "repos": "^2.0.0"
   },
   "dependencies": {
-    "combine-async-iterators": "^1.1.1",
-    "http-link-header": "^1.0.2",
+    "combine-async-iterators": "^2.0.1",
+    "http-link-header": "^1.0.3",
     "httpie": "^1.1.2"
   }
 }
