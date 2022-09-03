@@ -33,7 +33,7 @@
     "request"
   ],
   "files": [
-    "src"
+    "dist"
   ],
   "author": "GENTILHOMME Thomas <gentilhomme.thomas@gmail.com>",
   "license": "MIT",
