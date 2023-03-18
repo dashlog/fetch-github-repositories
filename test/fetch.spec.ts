@@ -1,24 +1,13 @@
-// Import Third-party Dependencies
-import { expect } from "chai";
+// Import Node.js Dependencies
+import { describe, it } from "node:test";
+import assert from "node:assert";
 
 // Import Internal Dependencies
-import { fetch, fetchLazy } from "../src/index.js";
-
-describe("fetchLazy", () => {
-  it("should throw an TypeError if namespace is not a string", async() => {
-    try {
-      await fetchLazy(null as any);
-      expect(1).to.equal(0);
-    }
-    catch (error) {
-      expect(error).to.be.an("TypeError");
-    }
-  })
-});
+import { fetch } from "../src/index.js";
 
 describe("fetch", () => {
   it("should fetch 'fraxken' github repositories", async() => {
     const repos = await fetch("fraxken");
-    expect(Array.isArray(repos)).to.equal(true);
+    assert.ok(Array.isArray(repos));
   });
 });

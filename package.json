@@ -8,9 +8,9 @@
   "scripts": {
     "build": "rimraf ./dist && tsc",
     "prepublishOnly": "npm run build",
-    "test": "mocha --parallel",
+    "test": "node --no-warnings --loader tsx --test test/fetch.spec.ts",
     "coverage": "c8 -r html npm test",
-    "lint": "cross-env eslint src/*.ts"
+    "lint": "eslint src/*.ts"
   },
   "repository": {
     "type": "git",
@@ -42,15 +42,10 @@
   },
   "homepage": "https://github.com/dashlog/fetch-github-repositories#readme",
   "devDependencies": {
-    "@types/chai": "^4.3.4",
-    "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.3",
     "c8": "^7.13.0",
-    "chai": "^4.3.7",
-    "cross-env": "^7.0.3",
-    "mocha": "^10.2.0",
     "rimraf": "^4.4.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^3.12.5",
     "typescript": "^5.0.2"
   },
   "dependencies": {
