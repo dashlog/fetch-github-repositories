@@ -172,10 +172,10 @@ export async function* fetchLazy(
       yield repo;
     }
 
-    if (!Reflect.has(currHeaders, "link")) {
+    if (!Reflect.has(currHeaders, "link") || currHeaders.link === undefined) {
       break;
     }
-    const { refs } = linkHeader.parse(currHeaders.link);
+    const { refs } = linkHeader.parse(currHeaders.link.toString());
 
     const item = refs.find((row) => row.rel === "next" || row.rel === "last");
     if (item === undefined) {
