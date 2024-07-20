@@ -8,7 +8,7 @@
 Fetch github repositories for a given user (or an organization).
 
 ## Requirements
-- [Node.js](https://nodejs.org/en/) v16 or higher
+- [Node.js](https://nodejs.org/en/) v20 or higher
 
 ## Why ?
 
