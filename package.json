@@ -10,7 +10,7 @@
     "prepublishOnly": "npm run build",
     "test": "glob -c \"tsx --test\" \"./test/**/*.spec.ts\"",
     "coverage": "c8 -r html npm test",
-    "lint": "eslint src/*.ts"
+    "lint": "eslint src test"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,8 @@
   },
   "homepage": "https://github.com/dashlog/fetch-github-repositories#readme",
   "devDependencies": {
+    "@openally/config.eslint": "^1.1.0",
+    "@openally/config.typescript": "^1.0.3",
     "@types/http-link-header": "^1.0.7",
     "@types/node": "^22.0.2",
     "c8": "^10.1.2",
