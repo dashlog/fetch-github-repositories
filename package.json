@@ -42,18 +42,18 @@
   },
   "homepage": "https://github.com/dashlog/fetch-github-repositories#readme",
   "devDependencies": {
-    "@openally/config.eslint": "^1.1.0",
+    "@openally/config.eslint": "^2.1.0",
     "@openally/config.typescript": "^1.0.3",
     "@types/http-link-header": "^1.0.7",
-    "@types/node": "^22.0.2",
-    "c8": "^10.1.2",
-    "glob": "^11.0.0",
+    "@types/node": "^22.15.3",
+    "c8": "^10.1.3",
+    "glob": "^11.0.2",
     "rimraf": "^6.0.1",
-    "tsx": "^4.16.2",
-    "typescript": "^5.5.3"
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@myunisoft/httpie": "^5.0.0",
+    "@myunisoft/httpie": "^5.0.1",
     "combine-async-iterators": "^3.0.0",
     "http-link-header": "^1.1.3"
   }
