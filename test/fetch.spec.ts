@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert";
 
 // Import Internal Dependencies
-import { fetch } from "../src/index.js";
+import { fetch } from "../src/index.ts";
 
 describe("fetch", () => {
   it("should fetch 'fraxken' github repositories", async() => {
