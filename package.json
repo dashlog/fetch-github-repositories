@@ -47,10 +47,10 @@
   },
   "homepage": "https://github.com/dashlog/fetch-github-repositories#readme",
   "devDependencies": {
-    "@openally/config.eslint": "2.4.2",
+    "@openally/config.eslint": "2.4.3",
     "@openally/config.typescript": "^1.2.1",
     "@types/http-link-header": "^1.0.7",
-    "@types/node": "26.1.1",
+    "@types/node": "26.1.2",
     "c8": "^12.0.0",
     "typescript": "7.0.2"
   },
